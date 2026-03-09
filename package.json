@@ -1,0 +1,71 @@
+{
+  "name": "mahagenco-centralized-monitoring",
+  "version": "0.1.0",
+  "description": "Enterprise-grade centralized monitoring system for MAHAGENCO thermal power generation",
+  "private": true,
+  "license": "MAHAGENCO-INTERNAL",
+  "author": "MAHAGENCO Dashboard Team",
+  "homepage": "https://github.com/mahagenco/centralized-monitoring",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mahagenco/centralized-monitoring.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mahagenco/centralized-monitoring/issues"
+  },
+  "workspaces": [
+    "frontend",
+    "backend",
+    "python-workers"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm install --workspace frontend && npm install --workspace backend",
+    "start": "concurrently \"npm start --workspace frontend\" \"npm start --workspace backend\"",
+    "start:frontend": "npm start --workspace frontend",
+    "start:backend": "npm start --workspace backend",
+    "build": "npm run build --workspace frontend && npm run build --workspace backend",
+    "build:frontend": "npm run build --workspace frontend",
+    "build:backend": "npm run build --workspace backend",
+    "test": "npm test --workspace frontend && npm test --workspace backend",
+    "test:frontend": "npm test --workspace frontend",
+    "test:backend": "npm test --workspace backend",
+    "test:coverage": "npm run test:coverage --workspace frontend && npm run test:coverage --workspace backend",
+    "lint": "npm run lint --workspace frontend && npm run lint --workspace backend",
+    "lint:fix": "npm run lint:fix --workspace frontend && npm run lint:fix --workspace backend",
+    "docs": "node scripts/generateDocs.js",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "db:migrate": "npm run migrate --workspace backend",
+    "db:seed": "npm run seed --workspace backend",
+    "db:reset": "npm run migrate:rollback --workspace backend && npm run migrate --workspace backend && npm run seed --workspace backend",
+    "security:audit": "npm audit --workspace frontend && npm audit --workspace backend",
+    "security:snyk": "snyk test",
+    "version": "echo 0.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "nodemon": "^3.0.1",
+    "eslint": "^8.48.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "prettier": "^3.0.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "jest": "^29.7.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/jest-dom": "^6.1.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [
+    "power-plant",
+    "monitoring",
+    "dashboard",
+    "thermal-generation",
+    "real-time",
+    "analytics"
+  ]
+}
