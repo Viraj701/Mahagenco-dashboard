@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  base: '/Mahagenco-dashboard/',   // ← ADD THIS LINE
   build: {
     outDir: 'dist',
     sourcemap: false,
